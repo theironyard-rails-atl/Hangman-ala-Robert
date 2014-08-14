@@ -18,5 +18,17 @@ class Game < ActiveRecord::Base
   # Answer cannot be nil or ""
   validates_presence_of :answer, :max_misses, :misses
 
+  def board
+    # Take @answer and only show letters that the player has guessed
+    result = ""
+    self.answer.split("").each do |char|
+      if self.guessed.include?(char)
+        result += char
+      else
+        result += "_"
+      end
+    end
+    result
+  end
 
 end
