@@ -14,10 +14,10 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'haml-rails'
 
 group :development do
-  gem 'spring'        
+  gem 'spring'
   gem 'quiet_assets'
   gem 'pry-rails'
   gem 'annotate'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
-
-
