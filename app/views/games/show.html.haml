@@ -1,0 +1,15 @@
+%pre= @game.board
+
+%h3 Status
+%p
+  = "#{@game.misses} / #{@game.max_misses}"
+
+%h3 Guessed
+%p
+  - ('a'..'z').each do |char|
+    = char unless @game.guessed.include?(char)
+%h3 Guess a letter
+= form_tag(game_path(@game), method: "patch") do
+  = label_tag(:q, "Pick a letter:")
+  = text_field_tag(:guess)
+  = submit_tag("Guess!")
