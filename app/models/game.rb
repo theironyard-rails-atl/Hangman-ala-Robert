@@ -31,4 +31,28 @@ class Game < ActiveRecord::Base
     result
   end
 
+  def guess(letter)
+    letter.downcase!
+    found = self.answer.include?(letter)
+
+    unless self.guessed.include?(letter)
+      self.guessed += letter
+      self.misses += 1 unless found
+    end
+    self.save!
+     
+  end
+
+  def won?
+    !self.board.include?("_") unless lost?
+  end
+
+  def lost?
+    self.misses == self.max_misses
+  end
+
+  def finished?
+    won? || lost?
+  end
+
 end
